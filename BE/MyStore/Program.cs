@@ -1,25 +1,20 @@
-var builder = WebApplication.CreateBuilder(args);
+﻿
+using Startup;
+// lấy ra scheduler để làm hàm tạo
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args)
+  .AddServicesContext()
+  .AddServicesBase()
+  ;
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddAutoMapper(typeof(Program));
 
+//LogManager.Setup().LoadConfigurationFromFile(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// Add global error handling
+///var logger = app.Services.GetRequiredService<ILoggerManager>();
+///app.ConfigureExceptionHandler(logger);
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
+app.UseService();
 app.Run();
