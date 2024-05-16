@@ -2,7 +2,7 @@
 
 namespace Entities;
 
-public class PaymentDetailEntity
+public class PaymentDetailEntity : BaseIdEntity
 {
     public Guid PaymentId { get; set; }
     public Guid UserId { get; set; }
@@ -13,5 +13,4 @@ public class PaymentDetailEntity
     /// Summary amount
     /// </summary>
     public double PaymentAmount { get; set; }
-
 }

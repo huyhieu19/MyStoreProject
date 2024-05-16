@@ -12,6 +12,6 @@ public class InvoiceSellDetailsEntity : BaseIdEntity
 {
     public Guid InvoiceSellId { get; set; }
     public string Name { get; set; } = string.Empty;
-    public int Amount { get; set; }
+    public int Amount { get; set; } = 1;
     public MerchandiseEntity? Merchandise { get; set; }
 }

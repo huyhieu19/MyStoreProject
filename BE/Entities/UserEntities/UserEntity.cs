@@ -1,16 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Entities.UserEntities
+namespace Entities;
+
+//IdentityUser
+//IdentityRole
+//IdentityUserClaim
+//IdentityUserToken
+//IdentityUserLogin
+//IdentityRoleClaim
+//IdentityUserRole
+public class UserEntity : IdentityUser
 {
-    //IdentityUser
-    //IdentityRole
-    //IdentityUserClaim
-    //IdentityUserToken
-    //IdentityUserLogin
-    //IdentityRoleClaim
-    //IdentityUserRole
-    public class UserBaseEntity : IdentityUser
-    {
-        public virtual PaymentDetailEntity? PaymentDetail { get; set; }
-    }
+    public virtual PaymentDetailEntity? PaymentDetail { get; set; }
 }
