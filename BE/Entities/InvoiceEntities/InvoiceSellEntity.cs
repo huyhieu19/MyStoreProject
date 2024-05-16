@@ -14,4 +14,5 @@ public class InvoiceSellDetailsEntity : BaseIdEntity
     public string Name { get; set; } = string.Empty;
     public int Amount { get; set; } = 1;
     public MerchandiseEntity? Merchandise { get; set; }
+    public virtual InvoiceSellEntity? InvoiceSell { get; set; }
 }

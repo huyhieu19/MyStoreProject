@@ -15,4 +15,5 @@ public class InvoiceLaundryDetailsEntity : BaseIdEntity
     public string Name { get; set; } = string.Empty;
     public int Amount { get; set; } = 1;
     public LaundryEntity? Laundry { get; set; }
+    public virtual InvoiceLaundryEntity? InvoiceLaundry { get; set; }
 }
