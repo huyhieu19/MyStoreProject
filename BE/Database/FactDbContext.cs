@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using Database.ModelCreateConfiguration;
+using Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,10 +29,13 @@ public class FactDbContext : IdentityDbContext<UserEntity>
             // Identity Role
             //builder.ApplyConfiguration(new RoleConfiguration());
 
+            builder.ApplyConfiguration(new InvoiceSellEntityConfiguration());
+            builder.ApplyConfiguration(new InvoiceSellDetailsEntityConfiguration());
 
         }
 
     }
+    #region DB set
     // Person
     public DbSet<ImportAgentEntity> ImportAgents { get; set; } = null!;
     public DbSet<CustomerEntity> Customers { get; set; } = null!;
@@ -42,8 +46,14 @@ public class FactDbContext : IdentityDbContext<UserEntity>
     public DbSet<InvoiceSewCurtainEntity> InvoiceSewCurtains { get; set; } = null!;
     // Payment
     public DbSet<PaymentEntity> Payments { get; set; } = null!;
+    public DbSet<PaymentDetailEntity> PaymentDetails { get; set; } = null!;
 
     // Merchandise
     public DbSet<MerchandiseEntity> Merchandises { get; set; } = null!;
+    public DbSet<PriceMerchandiseEntity> PriceMerchandises { get; set; } = null!;
     public DbSet<LaundryEntity> Laundries { get; set; } = null!;
+    public DbSet<PriceLaundryEntity> PriceLaundrys { get; set; } = null!;
+    public DbSet<SewCurtainEntity> SewCurtains { get; set; } = null!;
+    public DbSet<PriceSewCurtainEntity> PriceSewCurtain { get; set; } = null!;
+    #endregion
 }

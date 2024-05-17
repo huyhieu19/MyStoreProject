@@ -11,5 +11,6 @@ namespace Entities;
 //IdentityUserRole
 public class UserEntity : IdentityUser
 {
-    public virtual PaymentDetailEntity? PaymentDetail { get; set; }
+    public virtual List<PaymentDetailEntity>? PaymentDetails { get; set; }
+    public bool IsDeleted { get; set; } = false;
 }

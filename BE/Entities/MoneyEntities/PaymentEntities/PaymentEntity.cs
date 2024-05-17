@@ -2,7 +2,16 @@
 
 public class PaymentEntity : BaseIdEntity
 {
-    public Guid InvoiceLaundryId { get; set; }
+    public Guid? InvoiceLaundryId { get; set; }
+    public virtual InvoiceLaundryEntity? InvoiceLaundry { get; set; }
+    public Guid? InvoiceSellId { get; set; }
+    public virtual InvoiceSellEntity? InvoiceSell { get; set; }
+    public Guid? InvoiceImportId { get; set; }
+    public virtual InvoiceImportEntity? InvoiceImport { get; set; }
+    public Guid? InvoidSewId { get; set; }
+    public virtual InvoiceSewCurtainEntity? InvoiceSewCurtain { get; set; }
+
     public bool IsPayment { get; set; } = false;
-    public PaymentDetailEntity? PaymentDetail { get; set; }
+    public Guid? PaymentDetailId { get; set; }
+    public virtual PaymentDetailEntity? PaymentDetail { get; set; }
 }

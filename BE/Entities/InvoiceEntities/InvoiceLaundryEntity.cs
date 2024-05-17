@@ -3,7 +3,7 @@
 public class InvoiceLaundryEntity : BaseIdEntity
 {
     public Guid CustomerId { get; set; }
-    public PaymentEntity Payments { get; set; } = null!;
+    public virtual PaymentEntity Payments { get; set; } = null!;
     public DateTime TimeFromLaundry { get; set; } = DateTime.UtcNow;
     public DateTime TimeToLaundry { get; set; } = DateTime.MaxValue;
     public virtual List<InvoiceLaundryDetailsEntity>? InvoiceSellDetails { get; set; }

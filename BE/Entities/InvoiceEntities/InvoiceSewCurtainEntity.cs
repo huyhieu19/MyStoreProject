@@ -1,6 +1,4 @@
-﻿using Entities.StoreEntities.SewCurtains;
-
-namespace Entities;
+﻿namespace Entities;
 public class InvoiceSewCurtainEntity : BaseIdEntity
 {
     public Guid CustomerId { get; set; }
