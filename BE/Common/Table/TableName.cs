@@ -10,9 +10,13 @@
 
         #region table name for invoice
         public const string InvoiceImport = "InvoiceImport";
+        public const string InvoiceImportDetail = "InvoiceImportDetail";
+
         public const string InvoiceLaundry = "InvoiceLaundry";
+
         public const string InvoiceSell = "InvoiceSell";
         public const string InvoiceSellDetail = "InvoiceSellDetail";
+
         public const string InvoiceSellCurtain = "InvoiceSellCurtain";
         #endregion
 
