@@ -31,6 +31,8 @@ public class FactDbContext : IdentityDbContext<UserEntity>
 
             builder.ApplyConfiguration(new InvoiceSellEntityConfiguration());
             builder.ApplyConfiguration(new InvoiceSellDetailsEntityConfiguration());
+            builder.ApplyConfiguration(new InvoiceImportDetailEntityConfiguration());
+            builder.ApplyConfiguration(new InvoiceImportEntityConfiguration());
 
         }
 
