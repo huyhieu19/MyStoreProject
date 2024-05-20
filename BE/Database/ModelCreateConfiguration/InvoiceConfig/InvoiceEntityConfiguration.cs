@@ -90,6 +90,9 @@ public sealed class InvoiceSellDetailsEntityConfiguration : IEntityTypeConfigura
     }
 }
 
+/// <summary>
+/// Configuration invoice import entity
+/// </summary>
 public sealed class InvoiceImportEntityConfiguration : IEntityTypeConfiguration<InvoiceImportEntity>
 {
     public void Configure(EntityTypeBuilder<InvoiceImportEntity> builder)
@@ -135,6 +138,9 @@ public sealed class InvoiceImportEntityConfiguration : IEntityTypeConfiguration<
     }
 }
 
+/// <summary>
+/// Configuration Invoice import details
+/// </summary>
 public sealed class InvoiceImportDetailEntityConfiguration : IEntityTypeConfiguration<InvoiceImportDetailsEntity>
 {
     public void Configure(EntityTypeBuilder<InvoiceImportDetailsEntity> builder)
@@ -180,13 +186,191 @@ public sealed class InvoiceImportDetailEntityConfiguration : IEntityTypeConfigur
     }
 }
 
+/// <summary>
+/// Confuguration invoice laundry entity
+/// </summary>
 public sealed class InvoiceLaundryEntityConfiguration : IEntityTypeConfiguration<InvoiceLaundryEntity>
 {
     public void Configure(EntityTypeBuilder<InvoiceLaundryEntity> builder)
     {
+        // configure table name
         builder.ToTable(TableName.InvoiceLaundry);
+
+        // configure keys
+        builder.HasKey(p => p.Id);
+
+        // configure relationships
+        builder.HasOne(p => p.Payment)
+            .WithOne(p => p.InvoiceLaundry)
+            .HasForeignKey<PaymentEntity>(p => p.InvoiceLaundryId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasMany(p => p.InvoiceLaundryDetails)
+            .WithOne(p => p.InvoiceLaundry)
+            .HasForeignKey(p => p.InvoiceLaundryId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        // Congigure property
+        builder.Property(p => p.Description)
+            .HasMaxLength(500)
+            .HasDefaultValue(string.Empty);
+
+        builder.Property(p => p.IsDeleted)
+            .HasDefaultValue(false);
+
+        builder.Property(p => p.InvoiceName)
+            .HasMaxLength(100)
+            .HasDefaultValue(string.Empty);
+
+        builder.Property(p => p.Payment)
+            .IsRequired();
+
+        builder.Property(p => p.TimeFromLaundry)
+            .HasMaxLength(50)
+            .HasDefaultValue(DateTime.UtcNow)
+            .IsRequired();
+
+        builder.Property(p => p.TimeToLaundry)
+            .HasMaxLength(50)
+            .HasDefaultValue((DateTime?)null);
+
+    }
+}
+
+/// <summary>
+/// Configuration invoice laundry details
+/// </summary>
+public sealed class InvoiceLaundryDetailsEntityConfiguration : IEntityTypeConfiguration<InvoiceLaundryDetailsEntity>
+{
+    public void Configure(EntityTypeBuilder<InvoiceLaundryDetailsEntity> builder)
+    {
+        builder.ToTable(TableName.InvoiceLaundryDetail);
 
         builder.HasKey(p => p.Id);
 
+        builder.HasOne(p => p.Laundry)
+            .WithMany(p => p.InvoiceLaundryDetails)
+            .HasForeignKey(p => p.LaundryId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(p => p.InvoiceLaundry)
+            .WithMany(p => p.InvoiceLaundryDetails)
+            .HasForeignKey(p => p.InvoiceLaundryId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Property(p => p.Description)
+            .HasMaxLength(500)
+            .HasDefaultValue(string.Empty);
+
+        builder.Property(p => p.IsDeleted)
+            .HasDefaultValue(false);
+
+        builder.Property(p => p.Name)
+            .HasMaxLength(500)
+            .HasDefaultValue(string.Empty);
+
+        builder.Property(p => p.Amount)
+            .HasDefaultValue(1)
+            .IsRequired();
+
+        builder.Property(p => p.PriceForOne)
+            .HasDefaultValue(null);
+
+    }
+}
+
+/// <summary>
+/// Confuguration invoice sew curtain entity
+/// </summary>
+public sealed class InvoiceSewCurtainEntityConfiguration : IEntityTypeConfiguration<InvoiceSewCurtainEntity>
+{
+    public void Configure(EntityTypeBuilder<InvoiceSewCurtainEntity> builder)
+    {
+        // configure table name
+        builder.ToTable(TableName.InvoiceLaundry);
+
+        // configure keys
+        builder.HasKey(p => p.Id);
+
+        // configure relationships
+        builder.HasOne(p => p.Payment)
+            .WithOne(p => p.InvoiceSewCurtain)
+            .HasForeignKey<PaymentEntity>(p => p.InvoiceSewCurtainId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasMany(p => p.InvoiceSewCurtainDetails)
+            .WithOne(p => p.InvoiceSewCurtain)
+            .HasForeignKey(p => p.InvoiceSewCurtainId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        // Congigure property
+        builder.Property(p => p.Description)
+            .HasMaxLength(500)
+            .HasDefaultValue(string.Empty);
+
+        builder.Property(p => p.IsDeleted)
+            .HasDefaultValue(false);
+
+        builder.Property(p => p.InvoiceName)
+            .HasMaxLength(100)
+            .HasDefaultValue(string.Empty);
+
+        builder.Property(p => p.Payment)
+            .IsRequired();
+
+        builder.Property(p => p.TimeFrom)
+            .HasMaxLength(50)
+            .HasDefaultValue(DateTime.UtcNow)
+            .IsRequired();
+
+        builder.Property(p => p.TimeConpletedSewIng)
+            .HasMaxLength(50)
+            .HasDefaultValue((DateTime?)null);
+
+        builder.Property(p => p.TimeEnd)
+            .HasMaxLength(50)
+            .HasDefaultValue((DateTime?)null);
+
+    }
+}
+
+/// <summary>
+/// Configuration invoice laundry details
+/// </summary>
+public sealed class InvoiceSewCurtainDetailsEntityConfiguration : IEntityTypeConfiguration<InvoiceSewCurtainDetailsEntity>
+{
+    public void Configure(EntityTypeBuilder<InvoiceSewCurtainDetailsEntity> builder)
+    {
+        builder.ToTable(TableName.InvoiceSewCurtainDetail);
+
+        builder.HasKey(p => p.Id);
+
+        builder.HasOne(p => p.InvoiceSewCurtain)
+            .WithMany(p => p.InvoiceSewCurtainDetails)
+            .HasForeignKey(p => p.InvoiceSewCurtainId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(p => p.SewCurtain)
+            .WithMany(p => p.InvoiceSewCurtains)
+            .HasForeignKey(p => p.SewCurtainId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Property(p => p.Description)
+            .HasMaxLength(500)
+            .HasDefaultValue(string.Empty);
+
+        builder.Property(p => p.IsDeleted)
+            .HasDefaultValue(false);
+
+        builder.Property(p => p.Name)
+            .HasMaxLength(500)
+            .HasDefaultValue(string.Empty);
+
+        builder.Property(p => p.Amount)
+            .HasDefaultValue(1)
+            .IsRequired();
+
+        builder.Property(p => p.PriceForOne)
+            .HasDefaultValue(null);
     }
 }

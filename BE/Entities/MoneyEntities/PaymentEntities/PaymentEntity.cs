@@ -8,7 +8,7 @@ public class PaymentEntity : BaseIdEntity
     public virtual InvoiceSellEntity? InvoiceSell { get; set; }
     public Guid? InvoiceImportId { get; set; }
     public virtual InvoiceImportEntity? InvoiceImport { get; set; }
-    public Guid? InvoidSewId { get; set; }
+    public Guid? InvoiceSewCurtainId { get; set; }
     public virtual InvoiceSewCurtainEntity? InvoiceSewCurtain { get; set; }
 
     public bool IsPayment { get; set; } = false;

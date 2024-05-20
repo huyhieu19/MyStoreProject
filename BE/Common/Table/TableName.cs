@@ -13,11 +13,13 @@
         public const string InvoiceImportDetail = "InvoiceImportDetail";
 
         public const string InvoiceLaundry = "InvoiceLaundry";
+        public const string InvoiceLaundryDetail = "InvoiceLaundryDetail";
 
         public const string InvoiceSell = "InvoiceSell";
         public const string InvoiceSellDetail = "InvoiceSellDetail";
 
-        public const string InvoiceSellCurtain = "InvoiceSellCurtain";
+        public const string InvoiceSewCurtain = "InvoiceSewCurtain";
+        public const string InvoiceSewCurtainDetail = "InvoiceSewCurtainDetails";
         #endregion
 
         #region table name for Payment
