@@ -33,6 +33,13 @@ public class FactDbContext : IdentityDbContext<UserEntity>
             builder.ApplyConfiguration(new InvoiceSellDetailsEntityConfiguration());
             builder.ApplyConfiguration(new InvoiceImportDetailEntityConfiguration());
             builder.ApplyConfiguration(new InvoiceImportEntityConfiguration());
+            builder.ApplyConfiguration(new InvoiceLaundryDetailsEntityConfiguration());
+            builder.ApplyConfiguration(new InvoiceLaundryDetailsEntityConfiguration());
+            builder.ApplyConfiguration(new InvoiceSewCurtainDetailsEntityConfiguration());
+            builder.ApplyConfiguration(new InvoiceSewCurtainEntityConfiguration());
+
+            builder.ApplyConfiguration(new PaymentEntityConfiguration());
+            builder.ApplyConfiguration(new PaymentDetailEntityConfiguration());
 
         }
 

@@ -12,6 +12,5 @@ public class PaymentEntity : BaseIdEntity
     public virtual InvoiceSewCurtainEntity? InvoiceSewCurtain { get; set; }
 
     public bool IsPayment { get; set; } = false;
-    public Guid? PaymentDetailId { get; set; }
     public virtual PaymentDetailEntity? PaymentDetail { get; set; }
 }
