@@ -29,9 +29,9 @@
 
         #region name table for store entity
         public const string Laundry = "Laundry";
-        public const string PiceLaundry = "PiceLaundry";
+        public const string PriceLaundry = "PiceLaundry";
         public const string Merchandise = "Merchandise";
-        public const string PiceMerchandise = "PiceMerchandise";
+        public const string PriceMerchandise = "PiceMerchandise";
         public const string SewCurtain = "SewCurtain";
         public const string PriceSewCurtain = "PriceSewCurtain";
         #endregion

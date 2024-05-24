@@ -1,6 +1,6 @@
 ﻿namespace Entities;
 
-public class PriceSewCurtainEntity
+public class PriceSewCurtainEntity : BaseIdEntity
 {
     public Guid SewCurtainId { get; set; }
     public SewCurtainEntity SewCurtain { get; set; } = null!;

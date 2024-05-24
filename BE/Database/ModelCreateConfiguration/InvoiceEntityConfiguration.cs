@@ -40,8 +40,6 @@ public sealed class InvoiceSellEntityConfiguration : IEntityTypeConfiguration<In
         // configure properties
         builder.Property(ise => ise.InvoiceName).HasMaxLength(255).HasDefaultValue(string.Empty);
 
-        builder.Property(ise => ise.Payment).IsRequired();
-
         builder.Property(ise => ise.ValueDate).HasMaxLength(20).HasDefaultValue(DateTime.UtcNow);
 
         builder.Property(ise => ise.CustomerName).HasMaxLength(255).HasDefaultValue(string.Empty);
@@ -126,15 +124,9 @@ public sealed class InvoiceImportEntityConfiguration : IEntityTypeConfiguration<
 
         builder.Property(p => p.InvoiceName).HasDefaultValue(string.Empty);
 
-        builder.Property(p => p.Payment).IsRequired();
-
         builder.Property(p => p.ValueDate).IsRequired().HasDefaultValue(DateTime.UtcNow);
 
-        builder.Property(p => p.InvoiceImportDetails).IsRequired();
-
         builder.Property(p => p.ImportAgentId).HasDefaultValue(null);
-
-        builder.Property(p => p.ImportAgent).HasDefaultValue(null);
     }
 }
 
@@ -169,11 +161,7 @@ public sealed class InvoiceImportDetailEntityConfiguration : IEntityTypeConfigur
 
         builder.Property(p => p.InvoiceImportId).IsRequired();
 
-        builder.Property(p => p.InvoiceImport).IsRequired();
-
         builder.Property(p => p.MerchandiseId).HasDefaultValue(null);
-
-        builder.Property(p => p.Merchandise).HasDefaultValue(null);
 
         builder.Property(p => p.MerchandiseName).HasDefaultValue(string.Empty);
 
@@ -210,6 +198,11 @@ public sealed class InvoiceLaundryEntityConfiguration : IEntityTypeConfiguration
             .HasForeignKey(p => p.InvoiceLaundryId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        builder.HasOne(ise => ise.Customer)
+            .WithMany(c => c.InvoiceLaundries)
+            .HasForeignKey(c => c.CustomerId)
+            .OnDelete(DeleteBehavior.Restrict);
+
         // Congigure property
         builder.Property(p => p.Description)
             .HasMaxLength(500)
@@ -221,9 +214,6 @@ public sealed class InvoiceLaundryEntityConfiguration : IEntityTypeConfiguration
         builder.Property(p => p.InvoiceName)
             .HasMaxLength(100)
             .HasDefaultValue(string.Empty);
-
-        builder.Property(p => p.Payment)
-            .IsRequired();
 
         builder.Property(p => p.TimeFromLaundry)
             .HasMaxLength(50)
@@ -303,6 +293,11 @@ public sealed class InvoiceSewCurtainEntityConfiguration : IEntityTypeConfigurat
             .HasForeignKey(p => p.InvoiceSewCurtainId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        builder.HasOne(ise => ise.Customer)
+            .WithMany(c => c.InvoiceSewCurtains)
+            .HasForeignKey(c => c.CustomerId)
+            .OnDelete(DeleteBehavior.Restrict);
+
         // Congigure property
         builder.Property(p => p.Description)
             .HasMaxLength(500)
@@ -314,9 +309,6 @@ public sealed class InvoiceSewCurtainEntityConfiguration : IEntityTypeConfigurat
         builder.Property(p => p.InvoiceName)
             .HasMaxLength(100)
             .HasDefaultValue(string.Empty);
-
-        builder.Property(p => p.Payment)
-            .IsRequired();
 
         builder.Property(p => p.TimeFrom)
             .HasMaxLength(50)
@@ -330,7 +322,6 @@ public sealed class InvoiceSewCurtainEntityConfiguration : IEntityTypeConfigurat
         builder.Property(p => p.TimeEnd)
             .HasMaxLength(50)
             .HasDefaultValue((DateTime?)null);
-
     }
 }
 

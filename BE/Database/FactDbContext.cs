@@ -41,6 +41,12 @@ public class FactDbContext : IdentityDbContext<UserEntity>
             builder.ApplyConfiguration(new PaymentEntityConfiguration());
             builder.ApplyConfiguration(new PaymentDetailEntityConfiguration());
 
+            builder.ApplyConfiguration(new LaundryEntityConfiguration());
+            builder.ApplyConfiguration(new PriceLaundryEntityConfiguration());
+            builder.ApplyConfiguration(new MerchandiseEntiryConfiguration());
+            builder.ApplyConfiguration(new PriceMerchandiseEntityConfiguration());
+            builder.ApplyConfiguration(new SewCurtainEntityConfiguration());
+            builder.ApplyConfiguration(new PriceSewCurtainEntityConfiguration());
         }
 
     }
