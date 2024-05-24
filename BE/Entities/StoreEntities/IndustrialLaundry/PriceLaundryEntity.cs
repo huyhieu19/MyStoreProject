@@ -1,4 +1,5 @@
 ﻿namespace Entities;
+
 public class PriceLaundryEntity : BaseIdEntity
 {
     public Guid LaundryId { get; set; }

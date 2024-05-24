@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Swashbuckle.AspNetCore.SwaggerUI;
+
 namespace Startup;
 
 public static class AppSetup
@@ -28,7 +29,6 @@ public static class AppSetup
         app.UseAuthentication();
         app.UseAuthorization();
         app.MapControllers();
-
 
         ///app.UseResponseCaching();
         ///app.UseHttpCacheHeaders();

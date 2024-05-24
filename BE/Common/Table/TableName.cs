@@ -3,12 +3,15 @@
     public static class TableName
     {
         #region table name for user
+
         public const string User = "User";
         public const string Customer = "Customer";
         public const string ImportAgent = "ImportAgent";
-        #endregion
+
+        #endregion table name for user
 
         #region table name for invoice
+
         public const string InvoiceImport = "InvoiceImport";
         public const string InvoiceImportDetail = "InvoiceImportDetail";
 
@@ -20,21 +23,25 @@
 
         public const string InvoiceSewCurtain = "InvoiceSewCurtain";
         public const string InvoiceSewCurtainDetail = "InvoiceSewCurtainDetails";
-        #endregion
+
+        #endregion table name for invoice
 
         #region table name for Payment
+
         public const string PaymentDetail = "PaymentDetail";
         public const string Payment = "Payment";
-        #endregion
+
+        #endregion table name for Payment
 
         #region name table for store entity
+
         public const string Laundry = "Laundry";
         public const string PriceLaundry = "PiceLaundry";
         public const string Merchandise = "Merchandise";
         public const string PriceMerchandise = "PiceMerchandise";
         public const string SewCurtain = "SewCurtain";
         public const string PriceSewCurtain = "PriceSewCurtain";
-        #endregion
 
+        #endregion name table for store entity
     }
 }

@@ -1,4 +1,5 @@
 ﻿namespace Entities;
+
 public class InvoiceSewCurtainEntity : BaseIdEntity
 {
     public Guid? CustomerId { get; set; }

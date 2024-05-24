@@ -48,9 +48,10 @@ public sealed class InvoiceSellEntityConfiguration : IEntityTypeConfiguration<In
         builder.Property(p => p.Description).HasDefaultValue(string.Empty);
     }
 }
+
 /// <summary>
 /// configuration invoice sell detail entity before create table in database
-/// 
+///
 /// </summary>
 public sealed class InvoiceSellDetailsEntityConfiguration : IEntityTypeConfiguration<InvoiceSellDetailsEntity>
 {
@@ -170,7 +171,6 @@ public sealed class InvoiceImportDetailEntityConfiguration : IEntityTypeConfigur
         builder.Property(iid => iid.PriceSell).HasDefaultValue(null);
 
         builder.Property(iid => iid.Amount).HasDefaultValue(1);
-
     }
 }
 
@@ -223,7 +223,6 @@ public sealed class InvoiceLaundryEntityConfiguration : IEntityTypeConfiguration
         builder.Property(p => p.TimeToLaundry)
             .HasMaxLength(50)
             .HasDefaultValue((DateTime?)null);
-
     }
 }
 
@@ -265,7 +264,6 @@ public sealed class InvoiceLaundryDetailsEntityConfiguration : IEntityTypeConfig
 
         builder.Property(p => p.PriceForOne)
             .HasDefaultValue(null);
-
     }
 }
 

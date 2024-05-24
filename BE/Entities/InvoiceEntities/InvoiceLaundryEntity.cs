@@ -22,5 +22,4 @@ public class InvoiceLaundryDetailsEntity : BaseIdEntity
 
     public Guid InvoiceLaundryId { get; set; }
     public virtual InvoiceLaundryEntity? InvoiceLaundry { get; set; }
-
 }

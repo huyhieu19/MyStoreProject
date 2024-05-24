@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+
 namespace Startup;
 
 public static class ServicesStartup
@@ -18,7 +19,6 @@ public static class ServicesStartup
         //builder.Services.AddSingleton<IDataStatisticsService, DataStatisticsService>();
         //builder.Services.AddSingleton<IDeviceControlService, DeviceControlService>();
         //builder.Services.AddSingleton<IDeviceJobMqtt, ProcessJobMqtt>();
-
 
         // Inject background service
         //builder.Services.AddHostedService<ProcessDataReceivedFromMQTT>();
@@ -52,12 +52,12 @@ public static class ServicesStartup
 
         return builder;
     }
+
     public static WebApplicationBuilder AddServicesContext(this WebApplicationBuilder builder)
     {
         // SQL Server dependency Injection
         builder.Services.AddDbContext<FactDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("MyStore")));
-
 
         builder.Services.AddSwaggerGen(opt =>
         {

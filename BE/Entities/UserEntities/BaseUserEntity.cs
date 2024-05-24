@@ -1,4 +1,5 @@
 ﻿namespace Entities;
+
 public class BaseUserEntity : BaseIdEntity
 {
     public string Name { get; set; } = string.Empty;

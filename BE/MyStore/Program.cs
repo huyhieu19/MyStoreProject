@@ -1,5 +1,5 @@
-﻿
-using Startup;
+﻿using Startup;
+
 // lấy ra scheduler để làm hàm tạo
 
 var builder = WebApplication.CreateBuilder(args)

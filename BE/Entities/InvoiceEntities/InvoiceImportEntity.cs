@@ -26,5 +26,4 @@ public class InvoiceImportDetailsEntity : BaseIdEntity
     public int Amount { get; set; } = 1;
     public double? PriceImport { get; set; }
     public double? PriceSell { get; set; }
-
 }

@@ -8,7 +8,6 @@ namespace Repository.BaseRepository;
 
 public sealed class DBRepository<TDbContext> : IDBRepository<TDbContext> where TDbContext : FactDbContext
 {
-
     public readonly TDbContext dbContext;
 
     public DBRepository(TDbContext dbContext)
@@ -17,6 +16,7 @@ public sealed class DBRepository<TDbContext> : IDBRepository<TDbContext> where T
     }
 
     #region Create
+
     public async Task<T> AddAsync<T>(T entity, bool clearTracker = false, CancellationToken cancellationToken = default) where T : class
     {
         var entry = await dbContext.AddAsync(entity, cancellationToken);
@@ -30,9 +30,11 @@ public sealed class DBRepository<TDbContext> : IDBRepository<TDbContext> where T
         var result = await SaveChangeAsync(clearTracker, cancellationToken);
         return result;
     }
-    #endregion
+
+    #endregion Create
 
     #region Update
+
     public async Task<T> UpdateAsync<T>(T entity, bool clearTracker = false, CancellationToken cancellationToken = default) where T : class
     {
         var result = dbContext.Set<T>().Update(entity);
@@ -49,9 +51,11 @@ public sealed class DBRepository<TDbContext> : IDBRepository<TDbContext> where T
         var result = await SaveChangeAsync(clearTracker, cancellationToken);
         return result;
     }
-    #endregion
+
+    #endregion Update
 
     #region Delete (use)
+
     public async Task<int> DeleteAsync<T>(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default) where T : class
     {
         var entity = await dbContext.Set<T>().AsTracking().FirstOrDefaultAsync(predicate, cancellationToken);
@@ -72,9 +76,10 @@ public sealed class DBRepository<TDbContext> : IDBRepository<TDbContext> where T
         return await SaveChangeAsync();
     }
 
-    #endregion
+    #endregion Delete (use)
 
     #region Delete (admin use only)
+
     public async Task<int> DeleteForAdminAsync<T>(T entity, bool clearTracker = false, CancellationToken cancellationToken = default) where T : class
     {
         dbContext.Set<T>().Remove(entity);
@@ -89,7 +94,7 @@ public sealed class DBRepository<TDbContext> : IDBRepository<TDbContext> where T
         return result;
     }
 
-    #endregion
+    #endregion Delete (admin use only)
 
     #region Retrive
 
@@ -101,6 +106,7 @@ public sealed class DBRepository<TDbContext> : IDBRepository<TDbContext> where T
         }
         return await dbContext.Set<T>().Where(predicate).ToListAsync(cancellationToken);
     }
+
     public async Task<List<R>> GetAsync<T, R>(Expression<Func<T, R>> selector, Expression<Func<T, bool>> predicate = null, CancellationToken cancellationToken = default) where T : class
     {
         if (predicate == null)
@@ -116,7 +122,8 @@ public sealed class DBRepository<TDbContext> : IDBRepository<TDbContext> where T
     }
 
     // get with paging
-    #endregion
+
+    #endregion Retrive
 
     #region Query
 
@@ -138,9 +145,10 @@ public sealed class DBRepository<TDbContext> : IDBRepository<TDbContext> where T
         return dbContext.Set<T>().Where(predicate).AsTracking();
     }
 
-    #endregion
+    #endregion Query
 
     #region Transaction
+
     public async Task ActionInTransaction(Func<Task> action)
     {
         using (var transaction = dbContext.Database.BeginTransaction())
@@ -159,9 +167,11 @@ public sealed class DBRepository<TDbContext> : IDBRepository<TDbContext> where T
             }
         }
     }
-    #endregion
+
+    #endregion Transaction
 
     #region Clear tracker
+
     public async Task<int> SaveChangeAsync(bool clearTracker = false, CancellationToken cancellationToken = default)
     {
         var result = await dbContext.SaveChangesAsync(cancellationToken);
@@ -172,6 +182,5 @@ public sealed class DBRepository<TDbContext> : IDBRepository<TDbContext> where T
         return result;
     }
 
-    #endregion
-
+    #endregion Clear tracker
 }

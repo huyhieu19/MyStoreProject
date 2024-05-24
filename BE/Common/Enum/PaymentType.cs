@@ -6,6 +6,7 @@ namespace Common.Enum
     {
         [Description("Cashing")]
         Cashing = 1,
+
         [Description("Banking")]
         Banking = 2,
     }

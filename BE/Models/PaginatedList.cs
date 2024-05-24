@@ -6,6 +6,7 @@ public class PaginatedList<T> : List<T>
 {
     public int PageIndex { get; set; }
     public int TotalPages { get; set; }
+
     public PaginatedList(List<T> items, int count, int pageIndex, int pageSize)
     {
         PageIndex = pageIndex;
@@ -21,6 +22,7 @@ public class PaginatedList<T> : List<T>
             return (PageIndex > 1);
         }
     }
+
     public bool HasNextPage
     {
         get
@@ -28,6 +30,7 @@ public class PaginatedList<T> : List<T>
             return (PageIndex < TotalPages);
         }
     }
+
     public static async Task<PaginatedList<T>> CreatePagingAsync(IQueryable<T> source, int pageIndex, int pageSize)
     {
         var count = await source.CountAsync();

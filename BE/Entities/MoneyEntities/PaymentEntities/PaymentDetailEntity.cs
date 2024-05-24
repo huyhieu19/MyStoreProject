@@ -11,6 +11,7 @@ public class PaymentDetailEntity : BaseIdEntity
     public PaymentType PaymentType { get; set; } = PaymentType.Cashing;
     public DateTime PaymentTime { get; set; } = DateTime.UtcNow;
     public string? ImageUrl { get; set; }
+
     /// <summary>
     /// Summary amount
     /// </summary>
